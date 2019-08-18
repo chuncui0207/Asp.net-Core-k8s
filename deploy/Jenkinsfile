@@ -13,6 +13,9 @@ podTemplate(label: label, cloud: 'kubernetes',containers: [
   ],) {
 
     node(label){
+      stage('Git Checkout'){
+         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/chuncui0207/Asp.net-Core-k8s.git']]])
+      }
       stage('Unit Testing'){
       	echo "Unit Testing..."
       }
