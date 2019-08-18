@@ -3,7 +3,7 @@ podTemplate(label: label, cloud: 'kubernetes',containers: [
     containerTemplate(
         name: 'jnlp', 
         image: 'jenkinsci/jnlp-slave', 
-        alwaysPullImage: false
+        alwaysPullImage: false),
   ]) {
 
     node(label){
