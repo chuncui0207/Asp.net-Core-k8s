@@ -7,17 +7,12 @@ podTemplate(label: label, cloud: 'kubernetes',containers: [
   ]) {
 
     node(label){
-      stage('Git Checkout'){
-         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '8ff98f83-997e-41f8-b2fb-ce1719282021', url: 'git@192.168.161.153:Team/TestProject.git']]])
-      }
       stage('Unit Testing'){
       	echo "Unit Testing..."
       }
       stage('Build and Push Image'){
           sh '''
-          docker login -u louie -p 密码 192.168.161.151
           docker build -t 192.168.161.151/projectdemo/testprodemo:latest -f WebApplication1/Dockerfile .
-          docker push 192.168.161.151/projectdemo/testprodemo:latest
           '''
       }
       stage('Deploy to K8S'){
