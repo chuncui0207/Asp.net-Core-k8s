@@ -21,7 +21,8 @@ podTemplate(label: label, cloud: 'kubernetes',containers: [
       }
       stage('Build and Push Image'){
           sh '''
-          docker build -t 192.168.161.151/projectdemo/testprodemo:latest -f WebApplication1/Dockerfile .
+          ls
+          docker images
           '''
       }
       stage('Deploy to K8S'){
