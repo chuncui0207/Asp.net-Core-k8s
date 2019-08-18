@@ -2,7 +2,7 @@ def label = "mypod-${UUID.randomUUID().toString()}"
 podTemplate(label: label, cloud: 'kubernetes',containers: [
     containerTemplate(
         name: 'jnlp', 
-        image: 'jenkins/jenkins:lts-alpine', 
+        image: 'jenkinsci/jnlp-slave', 
         alwaysPullImage: false),
   ]) {
 
