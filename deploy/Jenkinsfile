@@ -8,8 +8,7 @@ podTemplate(label: label, cloud: 'kubernetes',containers: [
      volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
         hostPathVolume(mountPath: '/usr/bin/docker', hostPath: '/usr/bin/docker'),
-        hostPathVolume(mountPath: '/usr/local/jdk', hostPath: '/usr/local/jdk'),
-        hostPathVolume(mountPath: '/usr/local/maven', hostPath: '/usr/local/maven'),
+        hostPathVolume(mountPath: '/root/.kube', hostPath: '/root/.kube')
   ],) {
 
     node(label){
@@ -22,7 +21,7 @@ podTemplate(label: label, cloud: 'kubernetes',containers: [
       stage('Build and Push Image'){
           sh '''
           ls
-          docker images
+          build -t 192.168.161.151/projectdemo/testprodemo:latest -f WebApplication1/Dockerfile .
           '''
       }
       stage('Deploy to K8S'){
